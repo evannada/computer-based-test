@@ -8,10 +8,19 @@
                         <span aria-hidden="true"> &times; </span>
                     </button>
                     <h3 class="modal-title"></h3>
+                    <p id="info" class="alert alert-info"> <b>Info!</b> Password otomatis adalah NIP</p>
                 </div>
 
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
+                  <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="nip" class="col-md-3 control-label">NIP</label>
+                        <div class="col-md-6">
+                            <input type="text" id="nip" name="nip" class="form-control" maxlength="18" autofocus required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="name" class="col-md-3 control-label">Nama</label>
                         <div class="col-md-6">
@@ -21,18 +30,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="username" class="col-md-3 control-label">Username</label>
+                        <label for="subject" class="col-md-3 control-label">Mapel</label>
                         <div class="col-md-6">
-                            <input type="text" id="username" name="username" class="form-control" autofocus required>
+                          <select class="form-control" id="subject" name="subject" required>
+                              <option disabled value="" selected>-</option>
+                              <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                              <option value="Bahasa Inggris">Bahasa Inggris</option>
+                              <option value="Matematika">Matematika</option>
+                              <option value="Ilmu Pengetahuan Alam">Ilmu Pengetahuan Alam</option>
+                            </select>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <label for="nig" class="col-md-3 control-label">NIG/NIP</label>
+                        <label for="username" class="col-md-3 control-label">Username</label>
                         <div class="col-md-6">
-                            <input type="text" id="nig" name="nig" class="form-control" autofocus required>
+                            <input type="text" id="username" name="username" class="form-control" autofocus required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>

@@ -32,10 +32,20 @@ class User extends Authenticatable
       return $this->hasOne(Student::class);
     }
 
+    public function question()
+    {
+      return $this->hasOne(Question::class);
+    }
+
 
     public function teacher()
     {
       return $this->hasOne(Teacher::class);
+    }
+
+    public function tests()
+    {
+      return $this->hasMany(Test::class);
     }
 
     public function isAdmin()

@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
+                  <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="name" class="col-md-3 control-label">Nama</label>
                         <div class="col-md-6">

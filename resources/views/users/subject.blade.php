@@ -9,9 +9,19 @@
           <a href="{{ route('home')}}" class="list-group-item list-group-item-action">
             <i class="far fa-user-circle"></i> <b>Dashboard</b>
           </a>
-          <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Siswa</b></a>
-          <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
-          <a href="{{ route('data-mapel.index') }}" class="list-group-item list-group-item-action active"> <i class="fas fa-list-alt"></i> <b>Data Mapel</b></a>
+          @if(Auth::user()->isAdmin())
+            <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Siswa</b></a>
+            <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
+          @endif
+
+          @if(Auth::user()->isAdmin() || Auth::user()->isTeacher())
+            <a href="{{ route('soal.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Bank Soal</b></a>
+            @if (Auth::user()->isTeacher())
+              <a href="{{ route('ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
+            @endif
+            <a href="{{ route('hasil-ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Hasil Ujian</b></a>
+          @endif
+
         </div>
       </div>
 
@@ -20,12 +30,12 @@
           <!-- Default panel contents -->
           <div class="panel-heading">
             <h4>Data Mata Pelajaran
-              <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -9px;"><i class="fas fa-plus"></i> Tambah </a>
+              <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -9px;"><i class="fas fa-plus"></i> Tambah Data </a>
             </h4>
           </div>
           <div class="panel-body">
           <!-- Table -->
-          <table id="subject-table" class="table table-striped">
+          <table id="subject-table" class="table table-striped table-responsive">
             <thead>
               <tr>
                 <th width="30">No</th>
@@ -40,6 +50,9 @@
       </div>
       </div>
     </div>
+    <br>
+   <br>
+  <br>
 @endsection
 
 @include('users/form-subject')
@@ -63,7 +76,7 @@
                       $('input[name=_method]').val('POST');
                       $('#modal-form').modal('show');
                       $('#modal-form form')[0].reset();
-                      $('.modal-title').text('Tambah Data');
+                      $('.modal-title').text('Input Data');
                     }
 
 

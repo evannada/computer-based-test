@@ -11,17 +11,37 @@
             <i class="far fa-user-circle"></i> <b>Dashboard</b>
           </a>
 
-          @if(Auth::check() && Auth::user()->isAdmin())
+          @if(Auth::user()->isAdmin())
             <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Siswa</b></a>
             <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
-            <a href="{{route('data-mapel.index') }}" class="list-group-item list-group-item-action"> <i class="fas fa-list-alt"></i> <b>Data Mapel</b></a>
+          @endif
+
+          @if(Auth::user()->isAdmin() || Auth::user()->isTeacher())
+            <a href="{{ route('soal.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Bank Soal</b></a>
+            @if (Auth::user()->isTeacher())
+              <a href="{{ route('ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
+            @endif
+            <a href="{{ route('hasil-ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Hasil Ujian</b></a>
+          @endif
+
+          @if(Auth::user()->isStudent())
+            <a href="{{ url('/ujian-siswa')}}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
           @endif
 
             </div>
           </div>
+
+          @if (session('success'))
+          <div class="col-md-3">
+            <div class="alert alert-success">
+              {{ session('success') }}
+            </div>
+          </div>
+            @endif
+
           <div class="col-md-9">
               <div class="panel panel-default">
-                  <div class="panel-heading">Dashboard</div>
+                  <div class="panel-heading"><h4>Dashboard</h4></div>
 
                   <div class="panel-body">
                       @if (session('status'))
@@ -30,7 +50,7 @@
                           </div>
                       @endif
 
-                      You are logged in!
+                      Hi <b>{{Auth::user()->name}}</b>, You are logged in!
                   </div>
               </div>
             </div>

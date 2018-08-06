@@ -12,15 +12,15 @@ class TeachersTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('teachers')->insert([
-          'user_id' => 2,
-          'nig' => '404345',
-      ]);
-
-      DB::table('teachers')->insert([
-          'user_id' => 4,
-          'nig' => '404335',
-      ]);
+      // DB::table('teachers')->insert([
+      //     'user_id' => 2,
+      //     'nig' => '404345',
+      // ]);
+      //
+      // DB::table('teachers')->insert([
+      //     'user_id' => 4,
+      //     'nig' => '404335',
+      // ]);
 
     }
 }

@@ -59,8 +59,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            {{-- <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li> --}}
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -68,6 +68,12 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                  <li>
+                                        <a href="{{ route('password.change') }}">
+                                            <i class="fas fa-key"></i> Reset Password
+                                        </a>
+                                  </li>
+
                                     <li>
                                           <a href="{{ route('logout') }}"
                                               onclick="event.preventDefault();
@@ -79,6 +85,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+
                                 </ul>
                             </li>
                         @endguest
@@ -91,7 +98,7 @@
 
         </div>
 
-        <footer class="footer"> © 2018 All rights reserved. Designed by Evan Nada Virgiawan </footer>
+        <footer class="footer"> Designed by Evan Nada Virgiawan </footer>
 
     </div>
 
@@ -110,7 +117,8 @@
     <script src="{{ asset('assets/bootstrap/js/ie10-viewport-bug-workaround.js') }}"></script>
 
     {{-- CKEDITOR --}}
-    <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js') }}"></script>
 
     @yield('script')
 

@@ -13,11 +13,33 @@
                 </div>
 
                 <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
+                  <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="nis" class="col-md-3 control-label">NIS</label>
+                        <div class="col-md-6">
+                            <input type="text" id="nis" name="nis" class="form-control" maxlength="10" autofocus required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="name" class="col-md-3 control-label">Nama</label>
                         <div class="col-md-6">
                             <input type="text" id="name" name="name" class="form-control" autofocus required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="class" class="col-md-3 control-label">Kelas</label>
+                        <div class="col-md-6">
+                          <select class="form-control" id="class" name="class" required>
+                              <option disabled value="" selected>-</option>
+                              <option value="IX-A">IX-A</option>
+                              <option value="IX-B">IX-B</option>
+                              <option value="IX-C">IX-C</option>
+                              <option value="IX-D">IX-D</option>
+                            </select>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -30,21 +52,6 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="nis" class="col-md-3 control-label">NIS</label>
-                        <div class="col-md-6">
-                            <input type="text" id="nis" name="nis" class="form-control" autofocus required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="class" class="col-md-3 control-label">Kelas</label>
-                        <div class="col-md-6">
-                            <input type="text" id="class" name="class" class="form-control" autofocus required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="modal-footer">

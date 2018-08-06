@@ -9,9 +9,19 @@
           <a href="{{ route('home')}}" class="list-group-item list-group-item-action">
             <i class="far fa-user-circle"></i> <b>Dashboard</b>
           </a>
-          <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Siswa</b></a>
-          <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action active"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
-          <a href="{{ route('data-mapel.index') }}" class="list-group-item list-group-item-action"> <i class="fas fa-list-alt"></i> <b>Data Mapel</b></a>
+          @if(Auth::user()->isAdmin())
+            <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt "></i> <b>Data Siswa</b></a>
+            <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action active"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
+          @endif
+
+          @if(Auth::user()->isAdmin() || Auth::user()->isTeacher())
+            <a href="{{ route('soal.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Bank Soal</b></a>
+            @if (Auth::user()->isTeacher())
+              <a href="{{ route('ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
+            @endif
+            <a href="{{ route('hasil-ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Hasil Ujian</b></a>
+          @endif
+
         </div>
       </div>
 
@@ -20,18 +30,19 @@
           <!-- Default panel contents -->
           <div class="panel-heading">
             <h4>Data Guru
-              <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -9px;"><i class="fas fa-plus"></i> Tambah </a>
+              <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -9px;"><i class="fas fa-plus"></i> Tambah Data </a>
             </h4>
           </div>
           <div class="panel-body">
           <!-- Table -->
-          <table id="teacher-table" class="table table-striped">
+          <table id="teacher-table" class="table table-striped table-responsive">
             <thead>
               <tr>
                 <th width="30">No</th>
+                <th>NIP</th>
                 <th>Nama</th>
+                <th>Mapel</th>
                 <th>Username</th>
-                <th>NIG/NIP</th>
                 <th>Action</th>
                 </tr>
             </thead>
@@ -42,6 +53,9 @@
       </div>
       </div>
     </div>
+    <br>
+   <br>
+  <br>
 @endsection
 
 @include('users/form-teacher')
@@ -57,19 +71,34 @@
                       ajax: "{{ route('api.data-guru') }}",
                       columns: [
                         {data: 'id', name: 'id'},
+                        {data: 'nip', name: 'nip'},
                         {data: 'name', name: 'name'},
+                        {data: 'subject', name: 'subject'},
                         {data: 'username', name: 'username'},
-                        {data: 'nig', name: 'nig'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
                       ]
                     });
+
+                    // $(document).ready(function() {
+                    //   $.ajax ({
+                    //     url: "{{ route('api.data-mapel') }}",
+                    //     datatype: "json",
+                    //     success: function(data) {
+                    //     $.each(data.data, function(i,value){
+                    //     $("#subject").append('<option value="' + value.index + '">' + value.name +
+                    //     '</option>');
+                    //           })
+                    //          }
+                    //        });
+                    //
+                    //     });
 
                     function addForm() {
                       save_method = "add";
                       $('input[name=_method]').val('POST');
                       $('#modal-form').modal('show');
                       $('#modal-form form')[0].reset();
-                      $('.modal-title').text('Tambah Data');
+                      $('.modal-title').text('Input Data');
                     }
 
                     function editForm(id) {
@@ -87,7 +116,8 @@
                           $('#id').val(data.id);
                           $('#name').val(data.name);
                           $('#username').val(data.username);
-                          $('#nig').val(data.nig);
+                          $('#nip').val(data.nip);
+                          $('#subject').val(data.subject);
                         },
                         error : function() {
                             alert("Nothing Data");

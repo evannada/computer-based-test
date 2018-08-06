@@ -9,9 +9,19 @@
           <a href="{{ route('home')}}" class="list-group-item list-group-item-action">
             <i class="far fa-user-circle"></i> <b>Dashboard</b>
           </a>
-          <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action active"><i class="fas fa-list-alt"></i> <b>Data Siswa</b></a>
-          <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
-          <a href="{{ route('data-mapel.index') }}" class="list-group-item list-group-item-action"> <i class="fas fa-list-alt"></i> <b>Data Mapel</b></a>
+          @if(Auth::user()->isAdmin())
+            <a href="{{ route('data-siswa.index') }}" class="list-group-item list-group-item-action active"><i class="fas fa-list-alt "></i> <b>Data Siswa</b></a>
+            <a href="{{ route('data-guru.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Data Guru</b></a>
+          @endif
+
+          @if(Auth::user()->isAdmin() || Auth::user()->isTeacher())
+            <a href="{{ route('soal.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Bank Soal</b></a>
+            @if (Auth::user()->isTeacher())
+              <a href="{{ route('ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
+            @endif
+            <a href="{{ route('hasil-ujian.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Hasil Ujian</b></a>
+          @endif
+
         </div>
       </div>
 
@@ -20,19 +30,19 @@
           <!-- Default panel contents -->
           <div class="panel-heading">
             <h4>Data Siswa
-              <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -9px;"><i class="fas fa-plus"></i> Tambah </a>
+              <a onclick="addForm()" class="btn btn-primary pull-right" style="margin-top: -9px;"><i class="fas fa-plus"></i> Tambah Data </a>
             </h4>
           </div>
           <div class="panel-body">
           <!-- Table -->
-          <table id="student-table" class="table table-striped">
+          <table id="student-table" class="table table-striped table-responsive">
             <thead>
               <tr>
                 <th width="30">No</th>
-                <th>Nama</th>
-                <th>Username</th>
                 <th>NIS</th>
+                <th>Nama</th>
                 <th>Kelas</th>
+                <th>Username</th>
                 <th>Action</th>
                 </tr>
             </thead>
@@ -43,6 +53,9 @@
       </div>
       </div>
     </div>
+    <br>
+   <br>
+  <br>
 @endsection
 
 @include('users/form-student')
@@ -56,10 +69,10 @@
                       ajax: "{{ route('api.data-siswa') }}",
                       columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'name', name: 'name'},
-                        {data: 'username', name: 'username'},
                         {data: 'nis', name: 'nis'},
+                        {data: 'name', name: 'name'},
                         {data: 'class', name: 'class'},
+                        {data: 'username', name: 'username'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
                       ]
                     });
@@ -69,7 +82,7 @@
                       $('input[name=_method]').val('POST');
                       $('#modal-form').modal('show');
                       $('#modal-form form')[0].reset();
-                      $('.modal-title').text('Tambah Data');
+                      $('.modal-title').text('Input Data');
                     }
 
 
