@@ -27,6 +27,7 @@ Route::group(['middleware' => 'admin'||'teacher'||'student'], function () {
 });
 
 Route::group(['middleware' => 'admin'], function(){
+  Route::put('password/{id}', 'PasswordController@updateAdmin')->name('password.updateAdmin');
   Route::Resource('data-guru', 'TeacherController');
   Route::get('api/data-guru', 'TeacherController@apiDataGuru')->name('api.data-guru');
   Route::get('api/data-guru-indo', 'TeacherController@apiDataGuruIndo')->name('api.data-guru-indo');

@@ -77,6 +77,42 @@
                       ]
                     });
 
+                    function resetPassword(id) {
+                      var csrf_token = $('meta[name="csrf-token"]').attr('content');
+                      swal({
+                          title: 'Yakin ingin mereset password?',
+                          text: "Password otomatis adalah NIS!",
+                          type: 'warning',
+                          showCancelButton: true,
+                          cancelButtonColor: '#d33',
+                          confirmButtonColor: '#3085d6',
+                          confirmButtonText: 'Yes, reset it!'
+                      }).then(function () {
+                          $.ajax({
+                              url : "{{ url('password') }}" + '/' + id,
+                              type : "PUT",
+                              data : {'_method' : 'PUT', '_token' : csrf_token},
+                              success : function(data) {
+                                  table.ajax.reload();
+                                  swal({
+                                      title: 'Success!',
+                                      text: data.message,
+                                      type: 'success',
+                                      timer: '1500'
+                                  })
+                              },
+                              error : function () {
+                                  swal({
+                                      title: 'Oops...',
+                                      text: data.message,
+                                      type: 'error',
+                                      timer: '1500'
+                                  })
+                              }
+                          });
+                      });
+                    }
+
                     function addForm() {
                       save_method = "add";
                       $('input[name=_method]').val('POST');

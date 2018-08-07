@@ -143,7 +143,8 @@ class StudentController extends Controller
         return Datatables::of($user)
               ->addColumn('action', function($user){
                   return '<a onclick="editForm('. $user->id .')" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Edit</a> ' .
-                         '<a onclick="deleteData('. $user->id .')" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Delete</a>';
+                         '<a onclick="deleteData('. $user->id .')" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Delete</a> '. 
+                         '<a onclick="resetPassword('. $user->id .')" class="btn btn-warning btn-xs"><i class="fas fa-key"></i> Reset Password</a>';
               })->make(true);
       }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Teacher;
+use App\Student;
 use Auth;
 use Hash;
 use Validator;
@@ -15,6 +17,7 @@ class PasswordController extends Controller
 
       return view('password.change');
     }
+
 
     public function update()
     {
@@ -52,5 +55,29 @@ class PasswordController extends Controller
         return redirect()
             ->route('home')
             ->withSuccess('Password has been updated.');
+    }
+
+    public function updateAdmin($id)
+    {
+
+      $teacher = Teacher::select('nip')
+                        ->where('user_id', $id)
+                        ->first();
+
+      if ($teacher) {
+        $nip = $teacher->nip;
+        $user = User::find($id);
+        $user->password = bcrypt($nip);
+        $user->save();
+      } else {
+        $student = Student::select('nis')
+                          ->where('user_id', $id)
+                          ->first();
+        $nis = $student->nis;
+        $user = User::find($id);
+        $user->password = bcrypt($nis);
+        $user->save();
+      }
+
     }
 }
