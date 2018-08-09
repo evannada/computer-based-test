@@ -145,8 +145,7 @@ class StudentTestController extends Controller
 
 
               if ($cek) {
-                $result_id = Result::select('id')
-                                   ->where('test_id', '=', $test_id)
+                $result = Result::where('test_id', '=', $test_id)
                                    ->where('user_id', '=', $user_id)
                                    ->first();
 
@@ -156,9 +155,9 @@ class StudentTestController extends Controller
 
                   $data = array(
                     'detail_ujian' => $detail_ujian,
-                    'result_id' => $result_id['id']
+                    'result' => $result
                   );
-
+                  
                   $teacher_id = $detail_ujian->user_id;
                   $num_questions = $detail_ujian->num_questions;
 
@@ -181,15 +180,14 @@ class StudentTestController extends Controller
                 $result->status = 'U';
                 $result->save();
 
-                $result_id = Result::select('id')
-                                   ->where('test_id', '=', $test_id)
+                $result = Result::where('test_id', '=', $test_id)
                                    ->where('user_id', '=', $user_id)
                                    ->first();
 
                   $detail_ujian = Test::findOrFail($test_id);
                   $data = array(
                     'detail_ujian' => $detail_ujian,
-                    'result_id' => $result_id['id']
+                    'result' => $result
                   );
 
                   $teacher_id = $detail_ujian->user_id;
@@ -287,7 +285,7 @@ class StudentTestController extends Controller
                         } elseif ($cek_sedang_ujian) {
                           $encode_id = Hashids::encode($daftarujian->id);
                           $url = route('ujian-siswa.show', $encode_id);
-                          return '<a href="'.$url.'" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Lanjut Ujian</a>';
+                          return '<a href="'.$url.'" class="btn btn-warning btn-xs"><i class="far fa-edit"></i> Lanjut Ujian</a>';
                         } else {
                           return '<a onclick="showModalToken('. $daftarujian->id .')" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Mulai Ujian</a>';
                         }

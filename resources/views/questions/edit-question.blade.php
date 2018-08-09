@@ -31,7 +31,7 @@
         <div class="panel panel-default">
           <!-- Default panel contents -->
           <div class="panel-heading">
-            <h4>Input Soal</h4>
+            <h4>Edit Soal</h4>
           </div>
 
           <div class="panel-body">

@@ -10,16 +10,13 @@
 
     <title>CBT</title>
 
-    {{-- <!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
-
-
     <!-- Styles -->
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
 
     <!-- fontawesome -->
     <link href="{{ asset('assets/fontawesome/web-fonts-with-css/css/fontawesome-all.css') }}" rel="stylesheet">
 
+    {{-- <link rel="stylesheet" href="{{ asset('assets/countdowntimer/dist/css/jQuery.countdownTimer.css') }}" /> --}}
 
     {{-- dataTables --}}
     <link href="{{ asset('assets/datatables/css/dataTables.foundation.css') }}" rel="stylesheet">
@@ -119,6 +116,9 @@
     {{-- CKEDITOR --}}
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js') }}"></script>
+
+    {{-- countdowntimer --}}
+    <script src="{{ asset('assets/countdowntimer/dist/js/jQuery.countdownTimer.js') }}"></script>
 
     @yield('script')
 

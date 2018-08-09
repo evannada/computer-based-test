@@ -124,15 +124,11 @@
                   <h5><b>Pelajaran    : {{$data['detail_ujian']->subject}}</b></h5>
                   <h5><b>Guru         : {{$data['detail_ujian']->user->name}}</b></h5>
                   <h5><b>Jumlah Soal  : {{$data['detail_ujian']->num_questions}}</b></h5>
-                  <h5><b>Waktu        : {{$data['detail_ujian']->time}} menit</b></h5>
-
               </div>
 
           </div>
 
           <div class="panel panel-primary">
-              {{-- <div class="panel-heading"><h5>Petunjuk Umum</h5></div> --}}
-
               <div class="panel-body">
                   <h5><b>Petunjuk Umum</b></h5>
                   <h5>Bacalah Basmallah sebelum mengerjakan soal-soal berikut!</h5>
@@ -140,14 +136,14 @@
                   <h5>Periksa dan baca kembali jawaban / soal sebelum menyelesaikan ujian!</h5>
                   <h5>Klik tombol selesai untuk menyelesaikan ujian</h5>
               </div>
-
           </div>
         </div>
 
           <div class="col-md-8">
               <div class="panel panel-default">
                   <div class="panel-heading"><h4>Soal
-                    <div id='field-countdown' class="btn btn-warning pull-right" style="margin-top: -9px;">{{$data['detail_ujian']->time .':'. '00'}}</div>
+                    {{-- <div id='field-countdown' class="btn btn-warning pull-right" style="margin-top: -9px;">{{$data['detail_ujian']->time .':'. '00'}}</div> --}}
+                    <div id="countdowntimer" style="font-weight: bold" class="pull-right"><span id="future_date"></span></div>
                   </h4></div>
                   <div class="panel-heading">
                     <div class="text-left">
@@ -165,11 +161,12 @@
 
                   <div class="panel-body">
                     <form id='form-post' action="{{route('ujian-siswa.store', $data['detail_ujian']->id)}}" method="post">
+                    {{-- <form id='form-post' method="post"> --}}
             					<input name="_method" type="hidden" value="POST">
             					{{csrf_field()}}
                       <input type="hidden" name="id" value="{{$data['detail_ujian']->id}}">
                       <input type="hidden" id="soal_{{$soal->id}}" name="jum_soal" value="{{$data['detail_ujian']->num_questions}}">
-                      <input type="hidden" name="result_id" value="{{$data['result_id']}}">
+                      <input type="hidden" name="result_id" value="{{$data['result']->id}}">
                       @php
                         $i=1;
                       @endphp
@@ -203,7 +200,7 @@
                       @endforeach
 
             						{{-- <div class="align-right"> --}}
-            							<input type="submit" class="btn btn-primary pull-right"  onclick="return confirm('Yakin ingin menyelesaikan ujian ?');" value="Selesai">
+            							<input type="submit" class="btn btn-primary pull-right"  onclick="return confirm('Yakin ingin menyelesaikan ujian?'); " value="Selesai">
             						{{-- </div> --}}
             					</form>
                   </div>
@@ -221,32 +218,65 @@
 @section('script')
   <script type="text/javascript">
 
+  $(function(){
+    var tgl_mulai = '{{date("Y-m-d H:i:s")}}';
+    var tgl_selesai = '{{$data['detail_ujian']->end_time}}';
+      $("#future_date").countdowntimer({
+          startDate : tgl_mulai,
+          dateAndTime : tgl_selesai,
+          size : "sm",
+          displayFormat: "HMS",
+          timeUp : selesai,
+      });
+	  });
+
+     function selesai() {
+      return confirm('Ujian selesai, waktu habis!!');
+    }
+    // hitung();
+    //
+    //   hitung = function() {
+    //     var tgl_mulai = '{{date("Y-m-d H:i:s")}}';
+    //     var tgl_selesai = '{{$data['detail_ujian']->end_time}}';
+    //
+    //     $("#future_date").countdowntimer({
+    //         startDate : tgl_mulai,
+    //         dateAndTime : tgl_selesai,
+    //         size : "lg",
+    //         displayFormat: "HMS",
+    //         timeUp : selesai,
+    //     });
+    // }
+    //
+    // selesai = function(){
+    //
+    // }
   // sessionStorage.clear();
   // localStorage.clear();
-  // window.location.reload();
+  // location.reload();
 
 
-      var seconds = {{$data['detail_ujian']->time*60}};
-
-      function countdown(seconds) {
-        seconds = parseInt(sessionStorage.getItem("seconds"))||seconds;
-        function tick() {
-          seconds--;
-          sessionStorage.setItem("seconds", seconds)
-          var counter = document.getElementById("field-countdown");
-          var current_minutes = parseInt(seconds/60);
-          var current_seconds = seconds % 60;
-          counter.innerHTML = current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
-          if( seconds > 0 ) {
-            setTimeout(tick, 1000);
-          }
-        }
-        tick();
-      }
-
-
-
-      countdown(seconds);
+      // var seconds = {{$data['detail_ujian']->time*60}};
+      //
+      // function countdown(seconds) {
+      //   seconds = parseInt(sessionStorage.getItem("seconds"))||seconds;
+      //   function tick() {
+      //     seconds--;
+      //     sessionStorage.setItem("seconds", seconds)
+      //     var counter = document.getElementById("field-countdown");
+      //     var current_minutes = parseInt(seconds/60);
+      //     var current_seconds = seconds % 60;
+      //     counter.innerHTML = current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
+      //     if( seconds > 0 ) {
+      //       setTimeout(tick, 1000);
+      //     }
+      //   }
+      //   tick();
+      // }
+      //
+      //
+      //
+      // countdown(seconds);
 
 
     $('.form-group').hide();
@@ -269,20 +299,49 @@
               };
 
 
-        $(function(){
-          $('input[type=radio]').each(function(){
-              var state = JSON.parse( localStorage.getItem('radio_'  + $(this).attr('id')) );
-              if (state) this.checked = state.checked;
-          });
-      });
+              // selesai = function(){
+              //   var url = {{route('ujian-siswa.store', $data['detail_ujian']->id)}};
+              //   $.ajax({
+              //       url : url,
+              //       type : "POST",
+              //       data : $('#form-post form').serialize(),
+              //       beforeSend: function() {
+              //                   return confirm('Yakin ingin menyelesaikan ujian?');
+              //               },
+              //       success : function(data) {
+              //           swal({
+              //               title: 'Success!',
+              //               text: data.message,
+              //               type: 'success',
+              //               timer: '1500'
+              //           })
+              //       },
+              //       error : function(data){
+              //           swal({
+              //               title: 'Opps...',
+              //               text: data.responseJSON.message,
+              //               type: 'error',
+              //               timer: '2000'
+              //           })
+              //       }
+              //   });
+              // }
 
 
-      $(window).bind('unload', function(){
-          $('input[type=radio]').each(function(){
-              localStorage.setItem('radio_' + $(this).attr('id'), JSON.stringify({checked: this.checked})
-              );
-          });
-      });
+      //   $(function(){
+      //     $('input[type=radio]').each(function(){
+      //         var state = JSON.parse( localStorage.getItem('radio_'  + $(this).attr('id')) );
+      //         if (state) this.checked = state.checked;
+      //     });
+      // });
+      //
+      //
+      // $(window).bind('unload', function(){
+      //     $('input[type=radio]').each(function(){
+      //         localStorage.setItem('radio_' + $(this).attr('id'), JSON.stringify({checked: this.checked})
+      //         );
+      //     });
+      // });
 
 
 

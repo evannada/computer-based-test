@@ -39,6 +39,18 @@ class MakeTestController extends Controller
     public function store(Request $request)
     {
 
+      $request->validate([
+          'subject_test' => 'required',
+          'subject' => 'required',
+          'num_questions' => 'required|integer',
+          'start_date' => 'required|date',
+          'start_time' => 'required',
+          'end_date' => 'required|date',
+          'end_time' => 'required',
+          'time' => 'required|integer',
+          'token' => 'required',
+      ]);
+
       $datetime = new DateTime($request->start_date);
       $start = $datetime->format('d-F-Y');
 
@@ -121,6 +133,19 @@ class MakeTestController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+      $request->validate([
+          'subject_test' => 'required',
+          'subject' => 'required',
+          'num_questions' => 'required|integer',
+          'start_date' => 'required|date',
+          'start_time' => 'required',
+          'end_date' => 'required|date',
+          'end_time' => 'required',
+          'time' => 'required|integer',
+          'token' => 'required',
+      ]);
+
       $test_teacher = Test::findOrFail($id);
 
       $datetime = new DateTime($request->start_date);
