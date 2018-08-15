@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('content')
 
   <div class="container-fluid">
@@ -26,6 +25,7 @@
 
           @if(Auth::user()->isStudent())
             <a href="{{ url('/ujian-siswa')}}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
+              <a href="{{  url('/hasil-ujian-siswa')}}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Hasil Ujian</b></a>
           @endif
 
             </div>
@@ -56,8 +56,5 @@
             </div>
           </div>
         </div>
-
-
-
 
 @endsection

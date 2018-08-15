@@ -35,19 +35,22 @@
           </div>
           <div class="panel-body">
           <!-- Table -->
-          <table id="teacher-table" class="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th width="30">No</th>
-                <th>NIP</th>
-                <th>Nama</th>
-                <th>Mapel</th>
-                <th>Username</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+          <div class="table-responsive">
+            <table id="teacher-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="30">No</th>
+                  <th>NIP</th>
+                  <th>Nama</th>
+                  <th>Mapel</th>
+                  <th>Username</th>
+                  <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody></tbody>
+            </table>          
+          </div>
+
         </div>
       </div>
       </div>

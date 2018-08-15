@@ -21,7 +21,7 @@ class QuestionController extends Controller
 
       if (Auth::user()->role == 3) {
         $questions = DB::table('questions')
-                      ->select('questions.id', 'questions.user_id', 'users.name','questions.subject','questions.bobot',
+                      ->select('questions.id', 'questions.user_id', 'users.name','questions.subject',
                                 DB::raw('substr(question, 1, 30) as question'),
                                 'questions.a', 'questions.b', 'questions.c', 'questions.d', 'questions.correct_answer',
                                 'questions.created_at', 'questions.updated_at')
@@ -32,7 +32,7 @@ class QuestionController extends Controller
       } else {
         $id = Auth::id();
         $questions = DB::table('questions')
-                      ->select('questions.id', 'questions.user_id', 'users.name','questions.subject','questions.bobot',
+                      ->select('questions.id', 'questions.user_id', 'users.name','questions.subject',
                                 DB::raw('substr(question, 1, 30) as question'),
                                 'questions.a', 'questions.b', 'questions.c', 'questions.d', 'questions.correct_answer',
                                 'questions.created_at', 'questions.updated_at')
@@ -97,7 +97,6 @@ class QuestionController extends Controller
           $question->c = $request->c;
           $question->d = $request->d;
           $question->correct_answer = $request->correct_answer;
-          $question->bobot = 1;
           $question->save();
 
           return redirect()->route('soal.index')->with('alert-success', 'Data Berhasil Dibuat.');
@@ -149,7 +148,6 @@ class QuestionController extends Controller
       $question->c = $request->c;
       $question->d = $request->d;
       $question->correct_answer = $request->correct_answer;
-      $question->bobot = 1;
       $question->save();
 
       return redirect()->route('soal.index')->with('alert-success', 'Data Berhasil Diubah.');

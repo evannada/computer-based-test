@@ -21,10 +21,9 @@ class CreateTestsTable extends Migration
             $table->string('subject_test');
             $table->integer('num_questions');
             $table->integer('time');
-            $table->string('type')->nullable();
-            $table->date('start')->nullable();
-            $table->time('start_time')->nullable();
-            $table->time('end_time')->nullable();
+            $table->date('start');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->string('token');
             $table->timestamps();
         });

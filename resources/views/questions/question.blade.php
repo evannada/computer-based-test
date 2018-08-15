@@ -41,36 +41,39 @@
 				        </div>
 					@endif
           <!-- Table -->
-          <table id="question-table" class="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th width="30">No</th>
-                <th>Soal</th>
-                <th>Mapel</th>
-                <th>Guru</th>
-                <th>Action</th>
-                </tr>
-              </thead>
-                @php
-                  $i=1;
-                @endphp
-                @foreach($questions as $question)
-    						<tr>
-    							<td>{{$i}}</td>
-    							<td>{!!$question->question!!}</td>
-    							<td>{{$question->subject}}</td>
-    							<td>{{$question->name}}</td>
-    							<td>
-                    <a href="{{ route('soal.edit', $question->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i>Edit</a>
-                    <a onclick="deleteData({{$question->id}})" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i>Delete</a>
-    							</td>
-    						</tr>
-                @php
-                  $i++;
-                @endphp
-    						@endforeach
+          <div class="table-responsive">
+            <table id="question-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="30">No</th>
+                  <th>Soal</th>
+                  <th>Mapel</th>
+                  <th>Guru</th>
+                  <th>Action</th>
+                  </tr>
+                </thead>
+                  @php
+                    $i=1;
+                  @endphp
+                  @foreach($questions as $question)
+      						<tr>
+      							<td>{{$i}}</td>
+      							<td>{!!$question->question!!}</td>
+      							<td>{{$question->subject}}</td>
+      							<td>{{$question->name}}</td>
+      							<td>
+                      <a href="{{ route('soal.edit', $question->id) }}" class="btn btn-primary btn-xs"><i class="far fa-edit"></i>Edit</a>
+                      <a onclick="deleteData({{$question->id}})" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i>Delete</a>
+      							</td>
+      						</tr>
+                  @php
+                    $i++;
+                  @endphp
+      						@endforeach
 
-            </table>
+              </table>        
+          </div>
+
           </div>
         </div>
         </div>

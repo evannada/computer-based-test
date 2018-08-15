@@ -16,6 +16,10 @@
             <td>{{$data_d['subject_test']}}</td>
           </tr>
           <tr>
+            <td>Tanggal Ujian</td>
+            <td>{{$data_d['start']}}</td>
+          </tr>
+          <tr>
             <td>Waktu</td>
             <td>{{$data_d['time']}} menit</td>
           </tr>
@@ -47,35 +51,38 @@
     </div>
   </div>
 
-<!-- Table -->
-<table id="IX_D-table" class="table table-striped table-responsive">
-  <thead>
-    <tr>
-      <th width="30">No</th>
-      <th>Nama Siswa</th>
-      <th>Kelas</th>
-      <th>Jumlah Benar</th>
-      <th>Jumlah Salah</th>
-      <th>Nilai</th>
-      <th>Action</th>
-      </tr>
-  </thead>
-  @php
-    $i=1;
-  @endphp
-  @foreach ($result['IX_D'] as $IX_D)
-    <tr id ="item{{$IX_D->id}}">
-      <td>{{$i}}</td>
-      <td>{{$IX_D->user->name}}</td>
-      <td>{{$IX_D->class}}</td>
-      <td>{{$IX_D->true}}</td>
-      <td>{{$IX_D->false}}</td>
-      <td>{{$IX_D->value}}</td>
-      <td><a onclick="deleteData({{$IX_D->id}})"  class="btn btn-danger btn-xs"><i class="fas fa-times-circle"></i> Batalkan Ujian</a></td>
-    </tr>
-    @php
-      $i++;
-    @endphp
-  @endforeach
-</table>
+  <!-- Table -->
+  <div class="col-md-12 table-responsive">
+    <table id="IX_D-table" class="table table-striped">
+      <thead>
+        <tr>
+          <th width="30">No</th>
+          <th>Nama Siswa</th>
+          <th>Kelas</th>
+          <th>Jumlah Benar</th>
+          <th>Jumlah Salah</th>
+          <th>Nilai</th>
+          <th>Action</th>
+          </tr>
+      </thead>
+      @php
+        $i=1;
+      @endphp
+      @foreach ($result['IX_D'] as $IX_D)
+        <tr id ="item{{$IX_D->id}}">
+          <td>{{$i}}</td>
+          <td>{{$IX_D->user->name}}</td>
+          <td>{{$IX_D->class}}</td>
+          <td>{{$IX_D->true}}</td>
+          <td>{{$IX_D->false}}</td>
+          <td>{{$IX_D->value}}</td>
+          <td><a onclick="deleteData({{$IX_D->id}})"  class="btn btn-danger btn-xs"><i class="fas fa-times-circle"></i> Batalkan Ujian</a></td>
+        </tr>
+        @php
+          $i++;
+        @endphp
+      @endforeach
+    </table>
+  </div>
+
 </div>

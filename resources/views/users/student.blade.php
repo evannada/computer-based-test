@@ -34,20 +34,24 @@
             </h4>
           </div>
           <div class="panel-body">
-          <!-- Table -->
-          <table id="student-table" class="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th width="30">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th>Kelas</th>
-                <th>Username</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+            
+            <!-- Table -->
+            <div class="table-responsive">
+              <table id="student-table" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th width="30">No</th>
+                    <th>NIS</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
         </div>
       </div>
       </div>

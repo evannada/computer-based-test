@@ -18,14 +18,12 @@ class CreateQuestionsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('subject');
-            $table->integer('bobot');
             $table->longText('question');
             $table->longText('a');
             $table->longText('b');
             $table->longText('c');
             $table->longText('d');
             $table->enum('correct_answer',['a','b','c','d']);
-
             $table->timestamps();
         });
     }

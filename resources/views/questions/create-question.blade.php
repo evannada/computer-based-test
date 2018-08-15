@@ -152,38 +152,38 @@
   <script type="text/javascript">
 
     $('#question').ckeditor({
-      filebrowserImageBrowseUrl: '/cbt/public/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
-      filebrowserBrowseUrl: '/cbt/public/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
     });
 
     $('#a').ckeditor({
-      filebrowserImageBrowseUrl: '/cbt/public/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
-      filebrowserBrowseUrl: '/cbt/public/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
     });
 
     $('#b').ckeditor({
-      filebrowserImageBrowseUrl: '/cbt/public/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
-      filebrowserBrowseUrl: '/cbt/public/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
     });
 
     $('#c').ckeditor({
-      filebrowserImageBrowseUrl: '/cbt/public/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
-      filebrowserBrowseUrl: '/cbt/public/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
     });
 
     $('#d').ckeditor({
-      filebrowserImageBrowseUrl: '/cbt/public/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
-      filebrowserBrowseUrl: '/cbt/public/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/cbt/public/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=' + $("input[name=_token]").val(),
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=' + $("input[name=_token]").val()
     });
 
 

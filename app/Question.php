@@ -9,7 +9,6 @@ class Question extends Model
   protected $fillable = [
     'user_id',
     'subject_teacher',
-    'bobot',
     'question',
     'a',
     'b',

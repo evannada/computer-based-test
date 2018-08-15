@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
 // Auth::routes();
 
@@ -62,4 +62,6 @@ Route::group(['middleware' => 'student'], function(){
   Route::get('ujian-siswa/{encode_id}', 'StudentTestController@show')->name('ujian-siswa.show');
   Route::post('ujian-siswa/{id}', 'StudentTestController@store')->name('ujian-siswa.store');
   Route::get('nilai-siswa/{id}', 'StudentTestController@result')->name('ujian-siswa.result');
+  Route::get('hasil-ujian-siswa', 'StudentTestController@resultAll')->name('ujian-siswa.result-all');
+  Route::get('hasil-ujian-siswa/pdf', 'StudentTestController@pdf')->name('ujian-siswa.pdf');
 });

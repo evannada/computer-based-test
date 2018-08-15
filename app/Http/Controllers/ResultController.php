@@ -86,6 +86,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_a,
         'min' => $min_a,
@@ -97,6 +98,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_b,
         'min' => $min_b,
@@ -108,6 +110,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_c,
         'min' => $min_c,
@@ -119,6 +122,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_d,
         'min' => $min_d,
@@ -205,7 +209,6 @@ class ResultController extends Controller
     public function pdf_a($id)
     {
       $test_id = $id;
-      $test = Test::findorfail($id);
       $test = Test::where('id', $test_id)->first();
 
       $max_a = Result::where('test_id', $test_id)->where('class', 'IX-A')->max('value');
@@ -217,6 +220,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_a,
         'min' => $min_a,
@@ -230,6 +234,7 @@ class ResultController extends Controller
                     ->orderBy('name', 'asc')
                     ->get();
 
+      $subject_test = $test->subject_test;
       $pdf = PDF::loadView('results.pdf-ix-a',compact('results', 'data_a'));
       return $pdf->download('IX-A.pdf');
 
@@ -238,7 +243,6 @@ class ResultController extends Controller
     public function pdf_b($id)
     {
       $test_id = $id;
-      $test = Test::findorfail($id);
       $test = Test::where('id', $test_id)->first();
 
       $max_b = Result::where('test_id', $test_id)->where('class', 'IX-B')->max('value');
@@ -250,6 +254,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_b,
         'min' => $min_b,
@@ -272,7 +277,6 @@ class ResultController extends Controller
     public function pdf_c($id)
     {
       $test_id = $id;
-      $test = Test::findorfail($id);
       $test = Test::where('id', $test_id)->first();
 
       $max_c = Result::where('test_id', $test_id)->where('class', 'IX-C')->max('value');
@@ -284,6 +288,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_c,
         'min' => $min_c,
@@ -305,7 +310,6 @@ class ResultController extends Controller
     public function pdf_d($id)
     {
       $test_id = $id;
-      $test = Test::findorfail($id);
       $test = Test::where('id', $test_id)->first();
 
       $max_d = Result::where('test_id', $test_id)->where('class', 'IX-D')->max('value');
@@ -317,6 +321,7 @@ class ResultController extends Controller
         'subject' => $test->subject,
         'subject_test' => $test->subject_test,
         'time' => $test->time,
+        'start' => $test->start,
         'num_questions' => $test->num_questions,
         'max' => $max_d,
         'min' => $min_d,

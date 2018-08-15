@@ -42,7 +42,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Computer Base Test
+                        Computer Based Test
                     </a>
                 </div>
 

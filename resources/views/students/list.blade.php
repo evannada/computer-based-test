@@ -13,6 +13,7 @@
 
           @if(Auth::user()->isStudent())
             <a href="{{  url('/ujian-siswa')}}" class="list-group-item list-group-item-action active"><i class="fas fa-list-alt"></i> <b>Ujian</b></a>
+            <a href="{{  url('/hasil-ujian-siswa')}}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt"></i> <b>Hasil Ujian</b></a>
           @endif
 
             </div>
@@ -39,26 +40,32 @@
     				        </div>
     					@endif
               <!-- Table -->
-              <table id="test-table" class="table table-striped">
-                <thead>
-                  <tr>
-                    <th width="30">No</th>
-                    <th>Nama Tes</th>
-                    <th>Mapel</th>
-                    <th>Guru</th>
-                    <th>Jumlah Soal</th>
-                    {{-- <th>Waktu</th> --}}
-                    <th>Status</th>
-                    <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+              <div class="table-responsive">
+                <table id="test-table" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th width="30">No</th>
+                      <th>Nama Tes</th>
+                      <th>Mapel</th>
+                      <th>Guru</th>
+                      <th>Jumlah Soal</th>
+                      {{-- <th>Waktu</th> --}}
+                      <th>Status</th>
+                      <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+              </div>
+
               </div>
             </div>
             </div>
           </div>
         </div>
+        <br>
+      <br>
+     <br>
 
 @endsection
 
@@ -73,12 +80,12 @@
                       ajax: "{{ route('api.ujian-siswa') }}",
                       columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'subject_test', name: 'subject_test', orderable: false, searchable: false},
-                        {data: 'subject', name: 'subject', orderable: false, searchable: false},
-                        {data: 'name', name: 'name', orderable: false, searchable: false},
-                        {data: 'num_questions', name: 'num_questions', orderable: false, searchable: false},
+                        {data: 'subject_test', name: 'subject_test'},
+                        {data: 'subject', name: 'subject'},
+                        {data: 'name', name: 'name'},
+                        {data: 'num_questions', name: 'num_questions'},
                         // {data: 'time', name: 'time'},
-                        {data: 'status', name: 'status', orderable: false, searchable: false},
+                        {data: 'status', name: 'status'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
                       ]
                     });

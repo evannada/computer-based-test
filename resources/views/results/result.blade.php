@@ -33,36 +33,39 @@
           </div>
           <div class="panel-body">
           <!-- Table -->
-          <table id="result-table" class="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th width="30">No</th>
-                <th>Nama Tes</th>
-                <th>Guru</th>
-                <th>Mapel</th>
-                <th>Jumlah Soal</th>
-                <th>Waktu(Menit)</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            @php
-              $i=1;
-            @endphp
-            @foreach ($tests as $test)
-              <tr>
-                <td>{{$i}}</td>
-                <td>{{$test->subject_test}}</td>
-                <td>{{$test->user->name}}</td>
-                <td>{{$test->subject}}</td>
-                <td>{{$test->num_questions}}</td>
-                <td>{{$test->time}} menit</td>
-                <td><a href="{{ route('hasil-ujian.show', $test->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat Hasil</a></td>
-              </tr>
+          <div class="table-responsive">
+            <table id="result-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="30">No</th>
+                  <th>Nama Tes</th>
+                  <th>Guru</th>
+                  <th>Mapel</th>
+                  <th>Jumlah Soal</th>
+                  <th>Waktu(Menit)</th>
+                  <th>Action</th>
+                  </tr>
+              </thead>
               @php
-                $i++;
+                $i=1;
               @endphp
-            @endforeach
-          </table>
+              @foreach ($tests as $test)
+                <tr>
+                  <td>{{$i}}</td>
+                  <td>{{$test->subject_test}}</td>
+                  <td>{{$test->user->name}}</td>
+                  <td>{{$test->subject}}</td>
+                  <td>{{$test->num_questions}}</td>
+                  <td>{{$test->time}} menit</td>
+                  <td><a href="{{ route('hasil-ujian.show', $test->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat Hasil</a></td>
+                </tr>
+                @php
+                  $i++;
+                @endphp
+              @endforeach
+            </table>    
+          </div>
+
         </div>
       </div>
       </div>

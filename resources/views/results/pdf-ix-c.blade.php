@@ -47,6 +47,10 @@
                 <td>{{$data_c['subject_test']}}</td>
               </tr>
               <tr>
+                <td>Tanggal Ujian</td>
+                <td>{{$data_c['start']}}</td>
+              </tr>
+              <tr>
                 <td>Waktu</td>
                 <td>{{$data_c['time']}} menit</td>
               </tr>

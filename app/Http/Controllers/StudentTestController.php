@@ -12,6 +12,7 @@ use App\Question;
 use App\Answer;
 use App\Result;
 use App\User;
+use PDF;
 
 
 class StudentTestController extends Controller
@@ -79,7 +80,6 @@ class StudentTestController extends Controller
                   $jum_salah = $jum_soal - $jum_benar;
                 }
 
-
                 $result = Result::findOrFail($result_id);
                 $result->test_id = $test_id;
                 $result->user_id = $user_id;
@@ -114,14 +114,6 @@ class StudentTestController extends Controller
       $class = $user->student->class;
 
 
-      // try {
-      //     $id = $decode_id[0];
-      //   }
-      //   catch (\Exception $e) {
-      //       return redirect()->route('ujian-siswa.index');
-      //   }
-
-
           $cek_ujian_selesai = Result::where('test_id', '=', $test_id)
                                      ->where('user_id', '=', $user_id)
                                      ->where('status', '=', 'S')
@@ -143,12 +135,10 @@ class StudentTestController extends Controller
                         ->where('user_id', '=', $user_id)
                         ->first();
 
-
               if ($cek) {
                 $result = Result::where('test_id', '=', $test_id)
                                    ->where('user_id', '=', $user_id)
                                    ->first();
-
 
 
                   $detail_ujian = Test::findOrFail($test_id);
@@ -157,7 +147,7 @@ class StudentTestController extends Controller
                     'detail_ujian' => $detail_ujian,
                     'result' => $result
                   );
-                  
+
                   $teacher_id = $detail_ujian->user_id;
                   $num_questions = $detail_ujian->num_questions;
 
@@ -227,11 +217,38 @@ class StudentTestController extends Controller
       $user_id = Auth::user()->id;
 
       $data = Result::where('test_id', $test_id)
-                      ->where('user_id', $user_id)
-                      ->first();
+                    ->where('user_id', $user_id)
+                    ->first();
 
       return $data;
+    }
 
+    public function resultAll()
+    {
+      $user_id = Auth::user()->id;
+      $results = Result::select('results.id', 'tests.subject_test', 'tests.subject', 'tests.start', 'tests.num_questions', 'results.value')
+                      ->leftJoin('tests', 'tests.id', '=', 'results.test_id')
+                      ->where('results.user_id', $user_id)
+                      ->orderBy('tests.subject_test', 'asc')
+                      ->get();
+
+      return view('students.result-all', compact('results'));
+    }
+
+    public function pdf()
+    {
+      $user_id = Auth::user()->id;
+      $results = Result::select('results.id', 'tests.subject_test', 'tests.subject', 'tests.start', 'tests.num_questions', 'results.value')
+                      ->leftJoin('tests', 'tests.id', '=', 'results.test_id')
+                      ->where('results.user_id', $user_id)
+                      ->orderBy('tests.subject_test', 'asc')
+                      ->get();
+
+
+      $pdf = PDF::loadView('students.report', compact('results'));
+      return $pdf->download('laporan_nilai.pdf');
+
+      // return view('students.report', compact('results'));
     }
 
 

@@ -29,26 +29,12 @@
         <div class="panel panel-default">
           <!-- Default panel contents -->
           <div class="panel-heading">
-            <h4>Daftar Hasil Ujian / Tes
-              <a href="{{route('hasil-ujian.IX-D', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - D </a>&nbsp;
-              <a href="{{route('hasil-ujian.IX-C', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - C </a>&nbsp;
-              <a href="{{route('hasil-ujian.IX-B', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - B </a>&nbsp;
-              <a href="{{route('hasil-ujian.IX-A', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - A </a>&nbsp;
-
-
-            </h4>
-
+            <h4>Daftar Hasil Ujian / Tes</h4>
           </div>
 
           <div class="panel panel-default">
             <div class="panel-body">
               <h5><b>KELAS :</b></h5>
-
-
-                {{-- <a id="button_A" class="btn btn-default" onclick="return button('A')">IX-A</a>
-                <a id="button_B" class="btn btn-default" onclick="return button('B')">IX-B</a>
-                <a id="button_C" class="btn btn-default" onclick="return button('C')">IX-C</a>
-                <a id="button_D" class="btn btn-default" onclick="return button('D')">IX-D</a> --}}
 
                 <select id='select_class' class="input-sm" name="">
                   <option value="A">IX-A</option>
@@ -57,8 +43,12 @@
                   <option value="D">IX-D</option>
                 </select>
 
-            </div>
+                <a href="{{route('hasil-ujian.IX-D', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - D </a>&nbsp;
+                <a href="{{route('hasil-ujian.IX-C', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - C </a>&nbsp;
+                <a href="{{route('hasil-ujian.IX-B', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - B </a>&nbsp;
+                <a href="{{route('hasil-ujian.IX-A', $test_id)}}" class="btn btn-primary btn-sm pull-right" style="margin-top: -9px;"><i class="fas fa-file-pdf"></i> IX - A </a>&nbsp;
 
+            </div>
           </div>
 
           <div id='IX-A' class="datakelas panel-body">
@@ -77,6 +67,10 @@
                     <tr>
                       <td>Nama Ujian</td>
                       <td>{{$data_a['subject_test']}}</td>
+                    </tr>
+                    <tr>
+                      <td>Tanggal Ujian</td>
+                      <td>{{$data_a['start']}}</td>
                     </tr>
                     <tr>
                       <td>Waktu</td>
@@ -111,36 +105,39 @@
             </div>
 
           <!-- Table -->
-          <table id="IX_A-table" class="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th width="30">No</th>
-                <th>Nama Siswa</th>
-                <th>Kelas</th>
-                <th>Jumlah Benar</th>
-                <th>Jumlah Salah</th>
-                <th>Nilai</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            @php
-              $i=1;
-            @endphp
-            @foreach ($result['IX_A'] as $IX_A)
-              <tr id ="item{{$IX_A->id}}">
-                <td>{{$i}}</td>
-                <td>{{$IX_A->user->name}}</td>
-                <td>{{$IX_A->class}}</td>
-                <td>{{$IX_A->true}}</td>
-                <td>{{$IX_A->false}}</td>
-                <td>{{$IX_A->value}}</td>
-                <td><a onclick="deleteData({{$IX_A->id}})"  class="btn btn-danger btn-xs"><i class="fas fa-times-circle"></i> Batalkan Ujian</a></td>
-              </tr>
+          <div id class="col-md-12 table-responsive">
+            <table id="IX_A-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="30">No</th>
+                  <th>Nama Siswa</th>
+                  <th>Kelas</th>
+                  <th>Jumlah Benar</th>
+                  <th>Jumlah Salah</th>
+                  <th>Nilai</th>
+                  <th>Action</th>
+                  </tr>
+              </thead>
               @php
-                $i++;
+                $i=1;
               @endphp
-            @endforeach
-          </table>
+              @foreach ($result['IX_A'] as $IX_A)
+                <tr id ="item{{$IX_A->id}}">
+                  <td>{{$i}}</td>
+                  <td>{{$IX_A->user->name}}</td>
+                  <td>{{$IX_A->class}}</td>
+                  <td>{{$IX_A->true}}</td>
+                  <td>{{$IX_A->false}}</td>
+                  <td>{{$IX_A->value}}</td>
+                  <td><a onclick="deleteData({{$IX_A->id}})"  class="btn btn-danger btn-xs"><i class="fas fa-times-circle"></i> Batalkan Ujian</a></td>
+                </tr>
+                @php
+                  $i++;
+                @endphp
+              @endforeach
+            </table>
+          </div>
+
         </div>
 
         @include('results/IX-B')

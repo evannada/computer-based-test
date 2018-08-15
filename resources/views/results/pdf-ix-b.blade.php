@@ -13,13 +13,11 @@
     {{-- <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
 
-
     <!-- Styles -->
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
 
     <!-- fontawesome -->
     <link href="{{ asset('assets/fontawesome/web-fonts-with-css/css/fontawesome-all.css') }}" rel="stylesheet">
-
 
     {{-- dataTables --}}
     <link href="{{ asset('assets/datatables/css/dataTables.foundation.css') }}" rel="stylesheet">
@@ -45,6 +43,10 @@
               <tr>
                 <td>Nama Ujian</td>
                 <td>{{$data_b['subject_test']}}</td>
+              </tr>
+              <tr>
+                <td>Tanggal Ujian</td>
+                <td>{{$data_b['start']}}</td>
               </tr>
               <tr>
                 <td>Waktu</td>
