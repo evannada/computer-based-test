@@ -55,6 +55,7 @@ Route::group(['middleware' => 'teacher'], function(){
   Route::get('api/ujian', 'MakeTestController@apiUjian')->name('api.ujian');
 });
 
+
 Route::group(['middleware' => 'student'], function(){
   Route::get('api/ujian-siswa', 'StudentTestController@apiUjianSiswa')->name('api.ujian-siswa');
   Route::get('ujian-siswa', 'StudentTestController@index')->name('ujian-siswa.index');

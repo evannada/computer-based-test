@@ -198,6 +198,8 @@ class MakeTestController extends Controller
               ->addColumn('action', function($ujian){
                   return '<a onclick="editForm('. $ujian->id .')" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Edit</a> ' .
                          '<a onclick="deleteData('. $ujian->id .')" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Delete</a>';
-              })->make(true);
+              })
+              ->editColumn('time', '{{$time}} menit')
+              ->make(true);
       }
 }

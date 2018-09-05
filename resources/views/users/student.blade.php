@@ -34,10 +34,10 @@
             </h4>
           </div>
           <div class="panel-body">
-            
+
             <!-- Table -->
             <div class="table-responsive">
-              <table id="student-table" class="table table-striped">
+              <table id="student-table" class="table table-striped table-bordered table-hover">
                 <thead>
                   <tr>
                     <th width="30">No</th>

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 use Vinkla\Hashids\Facades\Hashids;
+use Carbon\Carbon;
+use DateTime;
 use App\Test;
 use App\Question;
 use App\Answer;
@@ -38,6 +40,15 @@ class StudentTestController extends Controller
       $result_id = $request->result_id;
       //soal yang dijawab
       $array = $request->jawaban;
+
+      $cek_ujian_selesai = Result::where('test_id', '=', $test_id)
+                       ->where('user_id', '=', $user_id)
+                       ->where('status', '=', 'S')
+                       ->first();
+
+      if ($cek_ujian_selesai) {
+          return redirect()->route('ujian-siswa.index');
+      }
 
         if ($array == null) {
           $result = Result::findOrFail($result_id);
@@ -199,14 +210,33 @@ class StudentTestController extends Controller
     public function veriftoken(request $request)
     {
       $encode_id = Hashids::encode($request->id);
+      $test = Test::where('id', $request->id)->first();
+      //
+      // $start_time = new Carbon($test->start_time);
+      // $end_time = new Carbon($test->end_time);
+      // $time_now = Carbon::now();
+      //
+      // dd($end_time);
+      //
+      //
+      //
+      // if ($end_time < $time_now) {
+      //   dd('benar');
+      // } else {
+      //   dd('salah');
+      // }
+
+
       $token = $request->token;
       $veriftoken = Test::where('token', $token)->first();
 
-      if ($veriftoken) {
-        return redirect()->route('ujian-siswa.show', $encode_id);
-      }
-      return redirect()->back()->with('alert-danger', 'Token Salah!!');
 
+
+      if ($veriftoken) {
+          return redirect()->route('ujian-siswa.show', $encode_id);
+      } else {
+        return redirect()->back()->with('alert-danger', 'Token Salah!!');
+      }
     }
 
 
@@ -244,9 +274,10 @@ class StudentTestController extends Controller
                       ->orderBy('tests.subject_test', 'asc')
                       ->get();
 
-
+      $student = Auth::user()->name;
+      $name = 'laporan nilai_'.$student.'.pdf';
       $pdf = PDF::loadView('students.report', compact('results'));
-      return $pdf->download('laporan_nilai.pdf');
+      return $pdf->download($name);
 
       // return view('students.report', compact('results'));
     }
@@ -256,8 +287,8 @@ class StudentTestController extends Controller
     public function ApiUjianSiswa()
     {
 
-        $daftarujian = Test::select('tests.id', 'users.name' ,'tests.subject', 'tests.subject_test',
-                                      'tests.num_questions', 'tests.time', 'tests.token')
+        $daftarujian = Test::select('tests.id', 'users.name' ,'tests.subject', 'tests.subject_test','tests.time',
+                                      'tests.num_questions', 'tests.start', 'tests.token')
                 ->join('users', 'users.id', '=', 'tests.user_id')
                 ->get();
 
@@ -307,7 +338,9 @@ class StudentTestController extends Controller
                           return '<a onclick="showModalToken('. $daftarujian->id .')" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Mulai Ujian</a>';
                         }
 
-                      })->make(true);
+                      })
+                      ->editColumn('time', '{{$time}} menit')
+                      ->make(true);
 
 
     }

@@ -167,7 +167,50 @@ class QuestionController extends Controller
 
     public function apiSoal()
     {
-      $user = Question::all();
+      if (Auth::user()->role == 3) {
+        $questions = DB::table('questions')
+                      ->select('questions.id', 'questions.user_id', 'users.name','questions.subject',
+                                DB::raw('substr(question, 1, 30) as question'),
+                                'questions.a', 'questions.b', 'questions.c', 'questions.d', 'questions.correct_answer',
+                                'questions.created_at', 'questions.updated_at')
+                      ->join('users', 'users.id', '=', 'questions.user_id')
+                      ->get();
+
+                      return Datatables::of($questions)
+                            ->addColumn('action', function($questions){
+                              $route_edit = route('soal.edit', $questions->id);
+                                return '<a href="'.$route_edit.'" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Edit</a> ' .
+                                       '<a onclick="deleteData('. $questions->id .')" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Delete</a> ';
+                            })
+                            ->editColumn('question', function ($questions){
+                              return '{!!'.$questions->question.'!!}';
+                            })
+                            ->make(true);
+
+
+
+      } else {
+        $id = Auth::id();
+        $questions = DB::table('questions')
+                      ->select('questions.id', 'questions.user_id', 'users.name','questions.subject',
+                                DB::raw('substr(question, 1, 30) as question'),
+                                'questions.a', 'questions.b', 'questions.c', 'questions.d', 'questions.correct_answer',
+                                'questions.created_at', 'questions.updated_at')
+                      ->join('users', 'users.id', '=', 'questions.user_id')
+                      ->where('users.id', $id)
+                      ->get();
+
+                      return Datatables::of($questions)
+                            ->addColumn('action', function($questions){
+                              $route_edit = route('soal.edit', $questions->id);
+                                return '<a href="'.$route_edit.'" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Edit</a> ' .
+                                       '<a onclick="deleteData('. $questions->id .')" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Delete</a> ';
+                            })
+                            ->editColumn('question', function ($questions){
+                              return '{!!'.$questions->question.'!!}';
+                            })
+                            ->make(true);
     }
+  }
 
 }

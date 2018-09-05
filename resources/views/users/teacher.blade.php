@@ -36,7 +36,7 @@
           <div class="panel-body">
           <!-- Table -->
           <div class="table-responsive">
-            <table id="teacher-table" class="table table-striped">
+            <table id="teacher-table" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th width="30">No</th>
@@ -48,7 +48,7 @@
                   </tr>
               </thead>
               <tbody></tbody>
-            </table>          
+            </table>
           </div>
 
         </div>

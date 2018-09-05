@@ -81,7 +81,7 @@
       </div>
 
     <!-- Table -->
-    <table id="IX_B-table" class="table table-striped table-responsive">
+    <table id="IX_B-table" class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
           <th width="30">No</th>

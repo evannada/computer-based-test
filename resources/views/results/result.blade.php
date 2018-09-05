@@ -34,7 +34,7 @@
           <div class="panel-body">
           <!-- Table -->
           <div class="table-responsive">
-            <table id="result-table" class="table table-striped">
+            <table id="result-table" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th width="30">No</th>
@@ -42,7 +42,7 @@
                   <th>Guru</th>
                   <th>Mapel</th>
                   <th>Jumlah Soal</th>
-                  <th>Waktu(Menit)</th>
+                  <th>Waktu</th>
                   <th>Action</th>
                   </tr>
               </thead>
@@ -63,7 +63,7 @@
                   $i++;
                 @endphp
               @endforeach
-            </table>    
+            </table>
           </div>
 
         </div>

@@ -41,17 +41,18 @@
     					@endif
               <!-- Table -->
               <div class="table-responsive">
-                <table id="test-table" class="table table-striped">
+                <table id="test-table" class="table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
                       <th width="30">No</th>
                       <th>Nama Tes</th>
                       <th>Mapel</th>
                       <th>Guru</th>
-                      <th>Jumlah Soal</th>
-                      {{-- <th>Waktu</th> --}}
+                      <th>Tgl Ujian</th>
+                      <th>Soal</th>
+                      <th>Waktu</th>
                       <th>Status</th>
-                      <th>Aksi</th>
+                      <th>Action</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -83,8 +84,9 @@
                         {data: 'subject_test', name: 'subject_test'},
                         {data: 'subject', name: 'subject'},
                         {data: 'name', name: 'name'},
+                        {data: 'start', name: 'start'},
                         {data: 'num_questions', name: 'num_questions'},
-                        // {data: 'time', name: 'time'},
+                        {data: 'time', name: 'time'},
                         {data: 'status', name: 'status'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
                       ]

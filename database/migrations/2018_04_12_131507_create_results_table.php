@@ -22,7 +22,7 @@ class CreateResultsTable extends Migration
             $table->string('class');
             $table->integer('true');
             $table->integer('false');
-            $table->decimal('value', 10, 2);
+            $table->integer('value');
             $table->timestamps();
             $table->string('status');
         });

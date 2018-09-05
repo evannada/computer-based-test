@@ -42,7 +42,7 @@
 					@endif
           <!-- Table -->
           <div class="table-responsive">
-            <table id="question-table" class="table table-striped">
+            <table id="question-table" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th width="30">No</th>
@@ -52,6 +52,7 @@
                   <th>Action</th>
                   </tr>
                 </thead>
+                {{-- <tbody></tbody> --}}
                   @php
                     $i=1;
                   @endphp
@@ -71,7 +72,7 @@
                   @endphp
       						@endforeach
 
-              </table>        
+              </table>
           </div>
 
           </div>
@@ -84,51 +85,62 @@
     <br>
   @endsection
 
-{{-- @include('users/form-student') --}}
 
 @section('script')
 
   <script type="text/javascript">
+  // var table = $('#question-table').DataTable({
+  //                 processing: true,
+  //                 serverSide: true,
+  //                 ajax: "{{ route('api.soal') }}",
+  //                 columns: [
+  //                   {data: 'id', name: 'id'},
+  //                   {data: 'question', name: 'question'},
+  //                   {data: 'subject', name: 'subject'},
+  //                   {data: 'name', name: 'name'},
+  //                   {data: 'action', name: 'action', orderable: false, searchable: false}
+  //                 ]
+  //               });
 
       $(document).ready( function () {
         $('#question-table').DataTable();
-    } );
+      });
 
-    function deleteData(id){
-        var csrf_token = $('meta[name="csrf-token"]').attr('content');
-        swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            cancelButtonColor: '#d33',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!'
-        }).then(function () {
-            $.ajax({
-                url : "{{ url('soal') }}" + '/' + id,
-                type : "POST",
-                data : {'_method' : 'DELETE', '_token' : csrf_token},
-                success : function(data) {
-                    location.reload();
-                    swal({
-                        title: 'Success!',
-                        text: data.message,
-                        type: 'success',
-                        timer: '1500'
-                    })
-                },
-                error : function () {
-                    swal({
-                        title: 'Oops...',
-                        text: data.message,
-                        type: 'error',
-                        timer: '1500'
-                    })
-                }
-            });
-        });
-      }
+      function deleteData(id){
+          var csrf_token = $('meta[name="csrf-token"]').attr('content');
+          swal({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              type: 'warning',
+              showCancelButton: true,
+              cancelButtonColor: '#d33',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Yes, delete it!'
+          }).then(function () {
+              $.ajax({
+                  url : "{{ url('soal') }}" + '/' + id,
+                  type : "POST",
+                  data : {'_method' : 'DELETE', '_token' : csrf_token},
+                  success : function(data) {
+                      location.reload();
+                      swal({
+                          title: 'Success!',
+                          text: data.message,
+                          type: 'success',
+                          timer: '1500'
+                      })
+                  },
+                  error : function () {
+                      swal({
+                          title: 'Oops...',
+                          text: data.message,
+                          type: 'error',
+                          timer: '1500'
+                      })
+                  }
+              });
+          });
+        }
 
   </script>
 @endsection

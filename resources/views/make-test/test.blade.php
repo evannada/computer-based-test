@@ -36,7 +36,7 @@
           <div class="panel-body">
           <!-- Table -->
           <div class="table-responsive">
-            <table id="test-teacher-table" class="table table-striped">
+            <table id="test-teacher-table" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th width="30">No</th>
@@ -44,13 +44,13 @@
                   <th>Mapel</th>
                   <th>Tgl Mulai</th>
                   <th>Jumlah Soal</th>
-                  <th>Waktu(Menit)</th>
+                  <th>Waktu</th>
                   <th>Token</th>
                   <th>Action</th>
                   </tr>
               </thead>
               <tbody></tbody>
-            </table>      
+            </table>
           </div>
 
         </div>

@@ -235,8 +235,11 @@ class ResultController extends Controller
                     ->get();
 
       $subject_test = $test->subject_test;
+      $start = $test->start;
+      $teacher = $test->user->name;
+      $name = $subject_test.'_'.$teacher.'_'.$start.'_'.'IX-A.pdf';
       $pdf = PDF::loadView('results.pdf-ix-a',compact('results', 'data_a'));
-      return $pdf->download('IX-A.pdf');
+      return $pdf->download($name);
 
     }
 
@@ -267,10 +270,13 @@ class ResultController extends Controller
                     ->leftJoin('users', 'users.id', '=', 'results.user_id')
                     ->orderBy('name', 'asc')
                     ->get();
-      // return view('results.pdf-ix-b',compact('results', 'data_b'));
 
+      $subject_test = $test->subject_test;
+      $start = $test->start;
+      $teacher = $test->user->name;
+      $name = $subject_test.'_'.$teacher.'_'.$start.'_'.'IX-B.pdf';
       $pdf = PDF::loadView('results.pdf-ix-b',compact('results', 'data_b'));
-      return $pdf->download('IX-B.pdf');
+      return $pdf->download($name);
 
     }
 
@@ -302,9 +308,12 @@ class ResultController extends Controller
                     ->orderBy('name', 'asc')
                     ->get();
       // return view('results.pdf-ix-c',compact('results', 'data_c'));
-
+      $subject_test = $test->subject_test;
+      $start = $test->start;
+      $teacher = $test->user->name;
+      $name = $subject_test.'_'.$teacher.'_'.$start.'_'.'IX-C.pdf';
       $pdf = PDF::loadView('results.pdf-ix-c',compact('results', 'data_c'));
-      return $pdf->download('IX-C.pdf');
+      return $pdf->download($name);
     }
 
     public function pdf_d($id)
@@ -335,8 +344,12 @@ class ResultController extends Controller
                     ->orderBy('name', 'asc')
                     ->get();
 
+      $subject_test = $test->subject_test;
+      $start = $test->start;
+      $teacher = $test->user->name;
+      $name = $subject_test.'_'.$teacher.'_'.$start.'_'.'IX-D.pdf';
       $pdf = PDF::loadView('results.pdf-ix-d',compact('results', 'data_d'));
-      return $pdf->download('IX-D.pdf');
+      return $pdf->download($name);
     }
 
   }

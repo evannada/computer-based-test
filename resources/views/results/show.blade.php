@@ -106,7 +106,7 @@
 
           <!-- Table -->
           <div id class="col-md-12 table-responsive">
-            <table id="IX_A-table" class="table table-striped">
+            <table id="IX_A-table" class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th width="30">No</th>

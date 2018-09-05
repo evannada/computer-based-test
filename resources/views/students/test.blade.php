@@ -230,9 +230,39 @@
       });
 	  });
 
-     function selesai() {
-      return confirm('Ujian selesai, waktu habis!!');
+    //  function selesai() {
+    //   return confirm('Ujian selesai, waktu habis!!');
+    // }
+
+
+    selesai = function(){
+      var url = '{{route('ujian-siswa.store', $data['detail_ujian']->id)}}';
+      $.ajax({
+          url : url,
+          type : "POST",
+          data : $('#form-post').serialize(),
+          beforeSend: function() {
+                      return alert('Ujian selesai, waktu habis!');
+                  },
+          success : function(data) {
+            location.reload();
+          },
+          error : function(data){
+              swal({
+                  title: 'Opps...',
+                  text: data.responseJSON.message,
+                  type: 'error',
+                  timer: '2000'
+              })
+          }
+      });
     }
+
+
+
+
+
+
     // hitung();
     //
     //   hitung = function() {
@@ -298,34 +328,6 @@
                 });
               };
 
-
-              // selesai = function(){
-              //   var url = {{route('ujian-siswa.store', $data['detail_ujian']->id)}};
-              //   $.ajax({
-              //       url : url,
-              //       type : "POST",
-              //       data : $('#form-post form').serialize(),
-              //       beforeSend: function() {
-              //                   return confirm('Yakin ingin menyelesaikan ujian?');
-              //               },
-              //       success : function(data) {
-              //           swal({
-              //               title: 'Success!',
-              //               text: data.message,
-              //               type: 'success',
-              //               timer: '1500'
-              //           })
-              //       },
-              //       error : function(data){
-              //           swal({
-              //               title: 'Opps...',
-              //               text: data.responseJSON.message,
-              //               type: 'error',
-              //               timer: '2000'
-              //           })
-              //       }
-              //   });
-              // }
 
 
       //   $(function(){

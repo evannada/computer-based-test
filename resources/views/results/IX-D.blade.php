@@ -53,7 +53,7 @@
 
   <!-- Table -->
   <div class="col-md-12 table-responsive">
-    <table id="IX_D-table" class="table table-striped">
+    <table id="IX_D-table" class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
           <th width="30">No</th>
