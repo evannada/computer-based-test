@@ -49,6 +49,7 @@
                       <th>Mapel</th>
                       <th>Guru</th>
                       <th>Tgl Ujian</th>
+                      <th>Waktu Mulai</th>
                       <th>Soal</th>
                       <th>Waktu</th>
                       <th>Status</th>
@@ -85,6 +86,7 @@
                         {data: 'subject', name: 'subject'},
                         {data: 'name', name: 'name'},
                         {data: 'start', name: 'start'},
+                        {data: 'start_time', name: 'start_time'},
                         {data: 'num_questions', name: 'num_questions'},
                         {data: 'time', name: 'time'},
                         {data: 'status', name: 'status'},

@@ -101,7 +101,7 @@ class StudentTestController extends Controller
                 $result->status = 'S';
                 $result->save();
 
-              return redirect()->route('ujian-siswa.index')->withSuccess('Ujian telah selesai, klik tombol cek nilai untuk melihat hasil. ');
+              return redirect()->route('ujian-siswa.index')->withSuccess('Ujian telah selesai, klik tombol cek nilai untuk melihat hasil.');
         }
 
     }
@@ -211,32 +211,24 @@ class StudentTestController extends Controller
     {
       $encode_id = Hashids::encode($request->id);
       $test = Test::where('id', $request->id)->first();
-      //
-      // $start_time = new Carbon($test->start_time);
-      // $end_time = new Carbon($test->end_time);
-      // $time_now = Carbon::now();
-      //
-      // dd($end_time);
-      //
-      //
-      //
-      // if ($end_time < $time_now) {
-      //   dd('benar');
-      // } else {
-      //   dd('salah');
-      // }
-
-
+      $start_time = new Carbon($test->start_time);
+      $end_time = new Carbon($test->end_time);
+      $time_now = Carbon::now();
       $token = $request->token;
       $veriftoken = Test::where('token', $token)->first();
 
+      if ($time_now >= $start_time && $time_now <= $end_time) {
 
+          if ($veriftoken) {
+            return redirect()->route('ujian-siswa.show', $encode_id);
+          } else {
+            return redirect()->back()->with('alert-danger', 'Token Salah!!');
+          }
 
-      if ($veriftoken) {
-          return redirect()->route('ujian-siswa.show', $encode_id);
       } else {
-        return redirect()->back()->with('alert-danger', 'Token Salah!!');
+        return redirect()->back()->with('alert-danger', 'Waktu Ujian Tidak Sesuai');
       }
+
     }
 
 
@@ -288,7 +280,7 @@ class StudentTestController extends Controller
     {
 
         $daftarujian = Test::select('tests.id', 'users.name' ,'tests.subject', 'tests.subject_test','tests.time',
-                                      'tests.num_questions', 'tests.start', 'tests.token')
+                                      'tests.num_questions', 'tests.start', 'tests.start_time', 'tests.token')
                 ->join('users', 'users.id', '=', 'tests.user_id')
                 ->get();
 
@@ -338,6 +330,11 @@ class StudentTestController extends Controller
                           return '<a onclick="showModalToken('. $daftarujian->id .')" class="btn btn-primary btn-xs"><i class="far fa-edit"></i> Mulai Ujian</a>';
                         }
 
+                      })
+                      ->editColumn('start_time', function($daftarujian){
+                        $datetime = new DateTime($daftarujian->start_time);
+                        $time = $datetime->format('H:i');
+                        return $time;
                       })
                       ->editColumn('time', '{{$time}} menit')
                       ->make(true);
