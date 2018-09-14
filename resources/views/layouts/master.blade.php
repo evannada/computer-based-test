@@ -9,17 +9,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>CBT</title>
-
     <!-- Styles -->
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
 
     <!-- fontawesome -->
     <link href="{{ asset('assets/fontawesome/web-fonts-with-css/css/fontawesome-all.css') }}" rel="stylesheet">
 
-    {{-- <link rel="stylesheet" href="{{ asset('assets/countdowntimer/dist/css/jQuery.countdownTimer.css') }}" /> --}}
-
     {{-- dataTables --}}
-    <link href="{{ asset('assets/datatables/css/dataTables.foundation.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/dataTables/css/dataTables.foundation.min.css') }}" rel="stylesheet">
 
     {{-- SweetAlert2 --}}
     <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
@@ -93,15 +90,13 @@
 
     @yield('content')
 
-        </div>
-
+    </div>
         <footer class="footer"> Designed by Evan Nada Virgiawan </footer>
-
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('assets/jquery/jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     {{-- dataTables --}}
     <script src="{{ asset('assets/dataTables/js/jquery.dataTables.min.js') }}"></script>

@@ -14,7 +14,6 @@ class PasswordController extends Controller
 {
     public function change()
     {
-
       return view('password.change');
     }
 

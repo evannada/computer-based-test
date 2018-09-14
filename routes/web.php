@@ -21,7 +21,7 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => 'admin'||'teacher'||'student'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('password', 'PasswordController@change')->name('password.change');
     Route::put('password', 'PasswordController@update')->name('password.update');
 });
