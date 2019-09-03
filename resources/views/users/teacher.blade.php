@@ -247,7 +247,7 @@
                                       error : function(data){
                                           swal({
                                               title: 'Opps...',
-                                              text: data.responseJSON.message,
+                                              text: data.responseJSON.errors.username,
                                               type: 'error',
                                               timer: '2000'
                                           })

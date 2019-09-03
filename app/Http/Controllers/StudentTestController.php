@@ -124,7 +124,6 @@ class StudentTestController extends Controller
       $user = User::findorfail($user_id);
       $class = $user->student->class;
 
-
           $cek_ujian_selesai = Result::where('test_id', '=', $test_id)
                                      ->where('user_id', '=', $user_id)
                                      ->where('status', '=', 'S')

@@ -17,6 +17,7 @@ class TeacherController extends Controller
     public function index()
     {
         return view('users.teacher');
+
     }
 
     /**
@@ -37,15 +38,13 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+      $validate = $request->validate([
+          'nip'        => 'required',
+          'name'       => 'required',
+          'subject'    => 'required',
+          'username'   => 'required|unique:users,username',
+        ]);
 
-      $username = User::where('username', $request->username)->first();
-
-      if ($username) {
-        return response()->json([
-          'message' => 'Username telah digunakan'
-        ], 500);
-
-      } else {
         $user = new User();
         $user->name = $request->name;
         $user->username = $request->username;
@@ -59,7 +58,6 @@ class TeacherController extends Controller
         $teacher->nip = $request->nip;
         $teacher->subject = $request->input('subject');
         $teacher->save();
-      }
     }
 
     /**
@@ -81,7 +79,8 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-      $user = User::find($id);
+  
+      $user = User::findOrFail($id);
 
       $data = collect([
         'id' => $user->id,
@@ -91,7 +90,7 @@ class TeacherController extends Controller
         'subject' => $user->teacher->subject
       ]);
 
-       return $data;
+       return response()->json($data);
     }
 
     /**
